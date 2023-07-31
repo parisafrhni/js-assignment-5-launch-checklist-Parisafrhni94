@@ -44,10 +44,11 @@ function formSubmission(document, planets, pilot, copilot, fuelLevel, cargoLevel
     }
 
     // Checking if fuel level and cargo level are numbers
-    if (fuelLevelValidation === 'Not a Number' || cargoLevelValidation === 'Not a Number') {
-        alert('Fuel Level and Cargo Mass must be numbers!');
+    if (fuelLevelValidation === 'Not a Number' || cargoLevelValidation === 'Not a Number' || pilotValidation === "Is a Number" || copilotValidation === "Is a Number") {
+        alert('Make sure to enter valid information for each field');
         return;
     }
+
 
     // Converting fuelLevel and cargoLevel to numbers
     let fuelLevelNumber = Number(fuelLevel);
@@ -84,8 +85,8 @@ function formSubmission(document, planets, pilot, copilot, fuelLevel, cargoLevel
 async function myFetch() {
     let planetsReturned;
     try {
-        let response = await fetch("https://handlers.education.launchcode.org/static/planets.json");
-        planetsReturned = await response.json();
+        let response = await fetch("https://handlers.education.launchcode.org/static/planets.json"); //send a GET request
+        planetsReturned = await response.json(); //After the response is received, the .json() method is called on the response object
     } catch (error) {
         console.log(error);
     }
@@ -94,6 +95,7 @@ async function myFetch() {
 
 function pickPlanet(planets) {
     let index = Math.floor(Math.random() * planets.length);
+    console.log(planets);
     return planets[index];
 }
 
